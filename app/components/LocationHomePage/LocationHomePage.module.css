@@ -1,0 +1,15 @@
+.locationBox {
+  display: flex;
+  font-size: 1rem;
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: #db2a2a;
+  margin-top: 4vh;
+  margin-left: 2vw;
+  gap: 0.5vw;
+}
+
+.locationLink:hover {
+  cursor: pointer;
+}

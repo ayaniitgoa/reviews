@@ -1,0 +1,30 @@
+.reviewsBrowser {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.searchContainer {
+  padding: 1rem;
+  background: #f8f9fa;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.reviewsContentArea {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.entitiesContainer {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}

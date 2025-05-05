@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Modal overlay - centers the modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Modal container */
+.modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 40vw; /* Maximum width */
+  max-height: 80vh; /* Maximum height relative to viewport */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevents content from overflowing rounded corners */
+  color: black;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.modalHeader {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+.modalHeader button {
+  margin-right: 1vh;
+  position: relative;
+  top: -1.5vh;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.searchLocationBar {
+  padding: 12px 16px;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  font-size: 16px;
+  width: 85%;
+  /* box-sizing: border-box; Include padding in width */
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+.searchLocationBar:focus {
+  outline: none;
+  border-bottom-color: #db2a2a;
+}
+
+/* Container for the scrollable list */
+.cityListContainer {
+  flex: 1;
+  overflow: hidden; /* Enables proper scrolling containment */
+}
+
+/* Scrollable city list */
+.cityList {
+  height: 60vh;
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 0;
+  margin: 0;
+  width: 40vw;
+  margin-top: 1vh;
+}
+
+.cityItem {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 93%;
+  background-color: #f8f8f8;
+  justify-self: center;
+  justify-content: center;
+  position: relative;
+  left: 7px;
+  margin-bottom: 0.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.cityItem:hover {
+  background-color: #f5f5f5;
+}
+
+.cityItem:first-child {
+  margin-top: 0.2rem;
+}
+.cityItem:last-child {
+  border-bottom: none;
+}
+
+.cityItem p {
+  margin: 0;
+}
+
+.stateModalText {
+  font-size: 0.8em;
+  margin-top: 1rem;
+}
+
+.innerModalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.changeLocationHeader {
+  margin: 0 auto;
+  margin-bottom: 1vh;
+  margin-top: 3vh;
+}

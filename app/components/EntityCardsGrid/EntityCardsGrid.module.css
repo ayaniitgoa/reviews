@@ -1,0 +1,75 @@
+.entitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.entityCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.entityCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entityName {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.reviewCount {
+  font-size: 0.875rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.viewReviews {
+  color: #0066cc;
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+  cursor: pointer;
+}
+
+.viewReviews:hover {
+  text-decoration: underline;
+}
+
+.starRating {
+  color: #ffb400;
+  font-size: 1rem;
+}
+
+.filledStar {
+  color: #ffb400;
+}
+
+.halfStar {
+  position: relative;
+}
+
+.halfStar::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #ffb400;
+}
+
+.noResults {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+}
