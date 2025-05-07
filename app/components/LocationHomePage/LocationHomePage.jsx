@@ -51,7 +51,7 @@ function LocationHomePage() {
   }, []);
   return (
     <div>
-      <div className={`${styles.locationBox}`}>
+      <div className={styles.locationBox}>
         <MapPin color="#db2a2a" />
         {/* {locationDetails.city} */}
         <span className={styles.locationLink} onClick={openModal}>

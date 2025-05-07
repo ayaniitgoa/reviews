@@ -1,69 +1,93 @@
 .entitiesGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  gap: 0.5rem;
+  font-family: "Cal Sans", sans-serif;
 }
 
 .entityCard {
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 1.25rem;
-  transition: box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .entityCard:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .entityName {
-  font-weight: 600;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
 }
 
 .ratingContainer {
   display: flex;
   align-items: center;
   margin: 0.5rem 0;
+  gap: 0.5rem;
+}
+
+.starRating {
+  --star-size: 1.2rem;
+  --star-color: #e0e0e0;
+  --star-background: #ffb400;
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times, serif;
+  line-height: 1;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.starRating::before {
+  content: "★★★★★";
+  background: linear-gradient(
+    90deg,
+    var(--star-background) var(--percent),
+    var(--star-color) var(--percent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .reviewCount {
   font-size: 0.875rem;
   color: #666;
-  margin-left: 0.5rem;
 }
 
 .viewReviews {
+  background: none;
+  border: none;
   color: #0066cc;
   font-size: 0.875rem;
   margin-top: 0.75rem;
+  padding: 0;
   cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .viewReviews:hover {
+  color: #004499;
   text-decoration: underline;
 }
 
-.starRating {
-  color: #ffb400;
-  font-size: 1rem;
+.viewReviews::after {
+  content: "";
+  transition: transform 0.2s;
 }
 
-.filledStar {
-  color: #ffb400;
-}
-
-.halfStar {
-  position: relative;
-}
-
-.halfStar::after {
-  content: "★";
-  position: absolute;
-  left: 0;
-  width: 50%;
-  overflow: hidden;
-  color: #ffb400;
+.viewReviews:hover::after {
+  transform: translateX(2px);
 }
 
 .noResults {

@@ -5,26 +5,20 @@
 }
 
 .searchContainer {
-  padding: 1rem;
-  background: #f8f9fa;
+  padding: 15px;
+  background: #f5f5f5;
 }
 
-.searchInput {
+.searchContainer input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1rem;
 }
 
 .reviewsContentArea {
   display: flex;
   flex: 1;
-  overflow: hidden;
 }
 
-.entitiesContainer {
-  flex: 1;
-  overflow: auto;
-  padding: 1rem;
-}
+/* Add similar CSS files for other components */

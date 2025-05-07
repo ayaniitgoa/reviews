@@ -1,13 +1,23 @@
 import { useState } from "react";
 import styles from "./ReviewsBrowser.module.css";
 import CategoryGroupTabs from "../CategoryGroupTabs/CategoryGroupTabs.jsx";
-import CategoryAccordions from "../CategoryAccordions/CategoryAccordions.jsx";
+import CategoryAccordions from "../CategoryAccordions/CategoryAccordions";
 import EntityCardsGrid from "../EntityCardsGrid/EntityCardsGrid.jsx";
+import { reviewData } from "../../data";
 
 export default function ReviewsBrowser() {
-  const [activeGroup, setActiveGroup] = useState("Healthcare");
-  const [activeCategory, setActiveCategory] = useState("Hospitals");
+  const [activeGroup, setActiveGroup] = useState(
+    Object.keys(reviewData.groups)[0]
+  );
+  const [activeCategory, setActiveCategory] = useState(
+    reviewData.groups[Object.keys(reviewData.groups)[0]].default
+  );
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleGroupChange = (group) => {
+    setActiveGroup(group);
+    setActiveCategory(reviewData.groups[group].default);
+  };
 
   return (
     <div className={styles.reviewsBrowser}>
@@ -15,28 +25,29 @@ export default function ReviewsBrowser() {
         <input
           type="text"
           placeholder="Search entities..."
-          className={styles.searchInput}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
       <CategoryGroupTabs
+        groups={Object.keys(reviewData.groups)}
         activeGroup={activeGroup}
-        setActiveGroup={setActiveGroup}
-        setActiveCategory={setActiveCategory}
+        onGroupChange={handleGroupChange}
       />
 
       <div className={styles.reviewsContentArea}>
         <CategoryAccordions
-          activeGroup={activeGroup}
+          groupData={reviewData.groups[activeGroup]}
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
 
         <div className={styles.entitiesContainer}>
           <EntityCardsGrid
-            activeCategory={activeCategory}
+            entities={
+              reviewData.groups[activeGroup]?.categories[activeCategory] || []
+            }
             searchQuery={searchQuery}
           />
         </div>

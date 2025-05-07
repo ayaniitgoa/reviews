@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+
 .topbar {
   height: 8vh;
   width: 100vw;
@@ -10,6 +11,8 @@
   font-family: "Cal Sans", sans-serif;
   color: white;
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  position: relative;
+  z-index: 100;
 }
 
 .reviewLogoText {
@@ -22,4 +25,106 @@
   display: flex;
   gap: 2vw;
   font-weight: 100;
+  align-items: center;
+}
+
+.userName {
+  font-weight: 300;
+}
+
+.settingsMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: white;
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 300;
+}
+
+.settingsButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+  min-width: 180px;
+  z-index: 101;
+  margin-top: 8px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+
+.menuItem:hover {
+  background-color: #f5f5f5;
+}
+
+.menuItem span {
+  flex-grow: 1;
+}
+
+.menuIcon {
+  color: #666;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reviewLogoText {
+    font-size: 1.5rem;
+  }
+
+  .rightSideTopBar {
+    gap: 3vw;
+  }
+
+  .settingsButton {
+    padding: 4px 8px;
+  }
+
+  .dropdownMenu {
+    min-width: 160px;
+  }
 }

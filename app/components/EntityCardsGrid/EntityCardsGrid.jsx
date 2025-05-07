@@ -1,65 +1,34 @@
 import styles from "./EntityCardsGrid.module.css";
 
-const entitiesData = {
-  Hospitals: [
-    { id: 1, name: "Sterling Hospital", rating: 4.5, reviews: 124 },
-    { id: 2, name: "XYZ Hospital", rating: 3.8, reviews: 87 },
-  ],
-  Clinics: [
-    { id: 3, name: "City Clinic", rating: 4.2, reviews: 56 },
-    { id: 4, name: "Health Plus Clinic", rating: 3.9, reviews: 42 },
-  ],
-  
-};
-
-export default function EntityCardsGrid({ activeCategory, searchQuery }) {
-  const filteredEntities =
-    entitiesData[activeCategory]?.filter((entity) =>
-      entity.name.toLowerCase().includes(searchQuery.toLowerCase())
-    ) || [];
+export default function EntityCardsGrid({ entities, searchQuery }) {
+  const filteredEntities = entities.filter((entity) =>
+    entity.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className={styles.entitiesGrid}>
       {filteredEntities.length > 0 ? (
         filteredEntities.map((entity) => (
           <div key={entity.id} className={styles.entityCard}>
-            <h3 className={styles.entityName}>{entity.name}</h3>
+            <div className={styles.entityName}>{entity.name}</div>
             <div className={styles.ratingContainer}>
-              <StarRating rating={entity.rating} />
-              <span className={styles.reviewCount}>({entity.reviews})</span>
+              <div
+                className={styles.starRating}
+                style={{ "--rating": entity.rating }}
+                aria-label={`Rating: ${entity.rating} out of 5`}
+              ></div>
+              <span className={styles.reviewCount}>({entity.rating})</span>
             </div>
-            <div className={styles.viewReviews}>View Reviews →</div>
+            <button className={styles.viewReviews}>
+              View Reviews ({entity.reviews}) →
+            </button>
           </div>
         ))
       ) : (
         <div className={styles.noResults}>
-          No entities found matching "{searchQuery}"
+          No results found for "{searchQuery}"
         </div>
       )}
-    </div>
-  );
-}
-
-function StarRating({ rating }) {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-
-  return (
-    <div className={styles.starRating}>
-      {[...Array(5)].map((_, i) => (
-        <span
-          key={i}
-          className={
-            i < fullStars
-              ? styles.filledStar
-              : i === fullStars && hasHalfStar
-              ? styles.halfStar
-              : ""
-          }
-        >
-          ★
-        </span>
-      ))}
     </div>
   );
 }
