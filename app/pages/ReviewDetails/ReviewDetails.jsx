@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import styles from "./ReviewDetails.module.css";
 import TopBar from "@/app/components/TopBar/TopBar";
-import { getReviews } from "@/app/providers/ReviewProvider";
+import { addReviews, getReviews } from "@/app/providers/ReviewProvider";
 import { getBusiness } from "@/app/providers/BusinessProvider";
+import { useAuthStore } from "../../store/authStore";
 
 export default function ReviewDetails() {
   const { businessid } = useParams();
@@ -16,6 +17,7 @@ export default function ReviewDetails() {
   const [totalReviews, setTotalReviews] = useState(0);
   const [businessData, setBusinessData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuthStore();
 
   const toSentenceCase = (text) => {
     if (!text) return "";
@@ -66,15 +68,16 @@ export default function ReviewDetails() {
     if (rating === 0 || !reviewText.trim()) return;
 
     const newReview = {
-      reviewid: reviews.length + 1,
-      userid: "current_user",
       rating: rating.toString(),
       body: toSentenceCase(reviewText),
-      date: new Date().toLocaleDateString("en-US", {
+      created_at: new Date().toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
       }),
+      businessid: businessid,
+      email: user.email,
+      name: user.name,
     };
 
     setReviews([newReview, ...reviews]);
@@ -86,6 +89,8 @@ export default function ReviewDetails() {
       (averageRating * totalReviews + rating) / (totalReviews + 1)
     );
     setTotalReviews(totalReviews + 1);
+    addReviews(newReview);
+    console.log("addreview", newReview);
   };
 
   const getColor = (rating) => {
@@ -142,12 +147,11 @@ export default function ReviewDetails() {
           </p>
           <div className={styles.ratingContainer}>
             <span>
-              <span className={styles.ratingNumber}>
+              <span className={styles.ratingNumberTop}>
                 {averageRating.toFixed(1)}
               </span>
               <span className={styles.outOf5Stars}> /5 stars</span>
             </span>
-
             <div
               className={styles.starRating}
               style={{ "--rating": averageRating }}
@@ -192,8 +196,9 @@ export default function ReviewDetails() {
 
         {showReviewForm && (
           <form onSubmit={handleSubmitReview} className={styles.reviewForm}>
+            <h3 className={styles.formTitle}>Write a Review</h3>
             <div className={styles.ratingInput}>
-              <p>Your Rating:</p>
+              <p className={styles.ratingLabel}>Your Rating*</p>
               <div className={styles.starInput}>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -207,22 +212,62 @@ export default function ReviewDetails() {
                     onMouseLeave={() => setHoverRating(0)}
                     aria-label={`Rate ${star} star${star !== 1 ? "s" : ""}`}
                   >
-                    ★
+                    <span className={styles.starIcon}>★</span>
                   </button>
                 ))}
               </div>
+              <div className={styles.ratingHint}>
+                {rating === 0
+                  ? "Select your rating"
+                  : rating === 1
+                  ? "Poor"
+                  : rating === 2
+                  ? "Fair"
+                  : rating === 3
+                  ? "Good"
+                  : rating === 4
+                  ? "Very Good"
+                  : "Excellent"}
+              </div>
             </div>
-            <textarea
-              className={styles.reviewTextarea}
-              placeholder="Share your experience..."
-              value={reviewText}
-              onChange={(e) => setReviewText(e.target.value)}
-              required
-              aria-label="Review text"
-            />
-            <button type="submit" className={styles.submitButton}>
-              Submit Review
-            </button>
+            <div className={styles.formGroup}>
+              <label htmlFor="reviewText" className={styles.textareaLabel}>
+                Your Review*
+              </label>
+              <textarea
+                id="reviewText"
+                className={styles.reviewTextarea}
+                placeholder="Share details about your experience..."
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                required
+                maxLength={500}
+                aria-label="Review text"
+              />
+              <div className={styles.charCount}>
+                {reviewText.length}/500 characters
+              </div>
+            </div>
+            <div className={styles.formActions}>
+              <button
+                type="button"
+                className={styles.cancelButton}
+                onClick={() => {
+                  setShowReviewForm(false);
+                  setRating(0);
+                  setReviewText("");
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className={styles.submitButton}
+                disabled={rating === 0 || !reviewText.trim()}
+              >
+                Submit Review
+              </button>
+            </div>
           </form>
         )}
 
@@ -249,9 +294,7 @@ export default function ReviewDetails() {
                 >
                   <div className={styles.reviewHeader}>
                     <div className={styles.reviewer}>
-                      {review.userid === "current_user"
-                        ? "You"
-                        : review.userid || "Anonymous"}
+                      {review.user_name ? review.user_name : "Anonymous"}
                     </div>
                     <div className={styles.reviewRating}>
                       {"★".repeat(Math.floor(ratingNum))}

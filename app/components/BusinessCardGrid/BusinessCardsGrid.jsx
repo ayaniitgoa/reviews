@@ -68,9 +68,7 @@ export default function BusinessCardsGrid({ businesses, searchQuery }) {
                   {renderStars(entity.rating)}
                 </div>
                 <div className={styles.ratingDetails}>
-                  <span className={styles.ratingNumber}>
-                    {entity.rating.toFixed(1)}
-                  </span>
+                  <span className={styles.ratingNumber}>{entity.rating}</span>
                   <span className={styles.reviewCount}>
                     {entity.reviews} reviews
                   </span>
