@@ -1,7 +1,200 @@
-.centerDiv {
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600&family=Inter:wght@300;400;500&display=swap");
+
+.container {
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #f8f8f8;
+  overflow: hidden;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.authCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 1000px;
+  height: 650px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Brand Section */
+.brandSection {
+  background: #ffffff;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.logoContainer {
+  margin-bottom: 3rem;
+}
+
+.brandContent {
+  margin-top: auto;
+}
+
+.tagline {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #222;
+  line-height: 1.3;
+}
+
+.dividerLine {
+  width: 60px;
+  height: 3px;
+  background: #d33;
+  margin-bottom: 2rem;
+}
+
+.brandText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 90%;
+  font-weight: 400;
+}
+
+/* Form Section */
+.formSection {
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  background: #fcfcfc;
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #222;
+}
+
+.googleButton {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.dividerText {
+  display: inline-block;
+  padding: 0 15px;
+  background: #fcfcfc;
+  color: #999;
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #eee;
+  z-index: 0;
+}
+
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex-grow: 1;
+}
+
+.nameFields {
+  display: flex;
   gap: 1rem;
+}
+
+.input {
+  padding: 0.9rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  background: white;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #d33;
+  box-shadow: 0 0 0 3px rgba(221, 51, 51, 0.1);
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #777;
+  margin: 1rem 0;
+  font-weight: 400;
+}
+
+.checkbox {
+  margin-right: 0.5rem;
+}
+
+.terms a {
+  color: #d33;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  background: #d33;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.submitButton:hover {
+  background: #b22;
+  transform: translateY(-1px);
+}
+
+.loginText {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 1.5rem;
+  font-weight: 400;
+}
+
+.link {
+  color: #d33;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
 }

@@ -1,23 +1,55 @@
 .categoryTabs {
   display: flex;
-  border-bottom: 1px solid #e2e8f0;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0 1.5rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.categoryTabs::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 .tabButton {
-  padding: 8px 16px;
-  color: #64748b;
+  position: relative;
+  padding: 1rem 1.75rem;
+  color: #6b7280;
   background: none;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: "Cal Sans", sans-serif;
+  font-size: 1rem;
+  /* letter-spacing: 0.3px; */
+  font-family: "Inter", sans-serif;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 2px solid transparent;
 }
 
 .tabButton:hover {
-  color: #334155;
+  color: #374151;
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .tabButton.active {
-  color: #db2a2a;
-  border-bottom: 2px solid #db2a2a;
+  color: #0e2148;
+  border-bottom-color: #0e2148;
+  font-weight: bold;
+}
+
+.tabButton.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #7965c1;
+  z-index: 1;
+}
+
+/* Elegant focus state */
+.tabButton:focus-visible {
+  outline: none;
+  background: rgba(219, 42, 42, 0.1);
 }

@@ -1,24 +1,164 @@
 .reviewsBrowser {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+
+  min-height: 100vh;
+  background: #f9f9f9;
+  font-family: "Inter", -apple-system, sans-serif;
+  color: #2d2d2d;
 }
 
+/* Search Header */
 .searchContainer {
-  padding: 15px;
-  background: #f5f5f5;
+  padding: 1.25rem 2rem;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.03);
 }
 
-.searchContainer input {
+.searchInputWrapper {
+  /* max-width: 1200px; */
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin: 0 auto;
+  position: relative;
 }
 
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 1.25rem 0.85rem 3.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-radius: 10px; */
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  background: #f5f5f5;
+  color: #333;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #db2a2a;
+  box-shadow: 0 0 0 2px rgba(219, 42, 42, 0.15);
+  background: white;
+}
+
+.searchInput::placeholder {
+  color: #999;
+  letter-spacing: 0.2px;
+}
+
+/* Main Content Area */
 .reviewsContentArea {
   display: flex;
-  flex: 1;
+  /* max-width: 1300px; */
+  margin: 2.5rem auto;
+  width: 100%;
+  gap: 2.5rem;
+  padding: 0 2rem;
 }
 
-/* Add similar CSS files for other components */
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 6rem;
+  align-self: flex-start;
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  background: white;
+  /* border-radius: 12px; */
+  padding: 1.5rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .reviewsContentArea {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+    top: auto;
+  }
+
+  .searchContainer {
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchInput {
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+  }
+
+  .reviewsContentArea {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .mainContent {
+    padding: 1rem;
+    /* border-radius: 8px; */
+  }
+}
+.searchContainer {
+  padding: 1.25rem 2rem;
+  background: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.searchInputWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  width: 1.1rem;
+  height: 1.1rem;
+  pointer-events: none; /* Makes the icon non-interactive */
+  transition: color 0.2s ease;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 1.25rem 0.85rem 3.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-radius: 10px; */
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  background: #f5f5f5;
+  color: #333;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #db2a2a;
+  box-shadow: 0 0 0 2px rgba(219, 42, 42, 0.15);
+  background: white;
+}
+
+.searchInput:focus + .searchIcon {
+  color: #db2a2a; /* Icon color changes when input is focused */
+}

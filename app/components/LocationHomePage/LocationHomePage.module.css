@@ -1,17 +1,83 @@
 @import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
 
-.locationBox {
-  display: flex;
-  font-size: 1rem;
-  font-family: "Cal Sans", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-  color: #db2a2a;
-  margin-top: 4vh;
-  margin-left: 2vw;
-  gap: 0.5vw;
+.container {
+  /* max-width: 1400px; */
+  margin: 5rem auto;
+  /* padding: 0 2rem; */
+  width: 100%;
 }
 
-.locationLink:hover {
+.locationSelector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  /* border-radius: 50px; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
+  border: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 2rem 0 1rem 2rem;
+}
+
+.locationSelector:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.locationPin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #fef2f2;
+  border-radius: 50%;
+}
+
+.pinIcon {
+  color: #0E2148;
+  stroke-width: 2px;
+}
+
+.locationText {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  letter-spacing: 0.2px;
+}
+
+.chevronIcon {
+  color: #888;
+  transition: transform 0.2s ease;
+}
+
+.locationSelector:hover .chevronIcon {
+  color: #555;
+  transform: translateY(1px);
+}
+
+/* Animation when modal opens */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .locationSelector {
+    padding: 0.6rem 1rem;
+  }
+
+  .locationText {
+    font-size: 0.9rem;
+  }
 }

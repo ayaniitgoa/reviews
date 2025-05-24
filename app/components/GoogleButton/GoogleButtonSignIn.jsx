@@ -1,17 +1,16 @@
 import React from "react";
 import styles from "./GoogleButtonSignIn.module.css";
-import axios from "axios";
-import * as Global from "../../constants/global";
 import { useAuthStore } from "../../store/authStore.jsx";
-import GoogleButton from "react-google-button";
+import { FcGoogle } from "react-icons/fc"; // Using react-icons for Google logo
 
 function GoogleSignInButton() {
   const login = useAuthStore((state) => state.login);
 
   return (
-    <div className="">
-      <GoogleButton onClick={login} />
-    </div>
+    <button className={styles.googleButton} onClick={login}>
+      <FcGoogle className={styles.googleIcon} />
+      <span className={styles.buttonText}>Continue with Google</span>
+    </button>
   );
 }
 

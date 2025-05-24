@@ -1,8 +1,12 @@
 import * as Global from "../constants/global";
 
-export const getLocations = async () => {
+export const getBusinesses = async (locationid) => {
   try {
-    const response = await fetch(`${Global.default.BACKEND_URL}/locations`);
+    console.log("locationid", locationid);
+
+    const response = await fetch(
+      `${Global.default.BACKEND_URL}/businesses?locationid=${locationid}`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -10,17 +14,20 @@ export const getLocations = async () => {
 
     const data = await response.json();
 
-    console.log("locations", data);
+    console.log("businesses", data);
 
     return data;
   } catch (error) {
-    console.error("Error finding nearest city:", error);
+    console.error("Error finding nearby businesses", error);
     throw error; // Re-throw to let components handle it
   }
 };
-export const getLocationData = async (city) => {
+
+export const getBusiness = async ({ businessid }) => {
   try {
-    const response = await fetch(`${Global.default.BACKEND_URL}/locations/location?city=${city}`);
+    const response = await fetch(
+      `${Global.default.BACKEND_URL}/businesses/business?businessid=${businessid}`
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

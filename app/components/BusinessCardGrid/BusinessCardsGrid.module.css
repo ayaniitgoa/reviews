@@ -1,0 +1,160 @@
+.entitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+.entityCard {
+  background: white;
+  /* border-radius: 12px; */
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+.entityCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-color: #e3d095;
+}
+
+.cardContent {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.entityName {
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  color: #0e2148;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+  font-weight: bold;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.starsContainer {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.fullStar {
+  color: #ffb400;
+  font-size: 1.3rem;
+  text-shadow: 0 1px 2px rgba(255, 180, 0, 0.2);
+}
+
+.halfStar {
+  position: relative;
+  color: #e5e7eb;
+  font-size: 1.3rem;
+}
+
+.halfStar::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #ffb400;
+}
+
+.emptyStar {
+  color: #e5e7eb;
+  font-size: 1.3rem;
+}
+
+.ratingDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ratingNumber {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #ffb400, #ff8c00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.reviewCount {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.viewReviews {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: #483aa0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  width: fit-content;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.viewReviews:hover {
+  color: #0e2148;
+  gap: 0.75rem;
+}
+
+.viewReviews::after {
+  content: "";
+  transition: transform 0.3s ease;
+}
+
+.viewReviews:hover::after {
+  transform: translateX(3px);
+}
+
+/* Premium badge effect */
+.entityCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #db2a2a, #ff8c00);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.entityCard:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .entitiesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cardContent {
+    padding: 1.5rem;
+  }
+
+  .entityName {
+    font-size: 1.15rem;
+  }
+}

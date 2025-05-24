@@ -1,12 +1,12 @@
 "use client";
-import styles from "./page.module.css";
-import SignUp from "./pages/SignUp/SignUp.jsx";
-import { useAuthStore } from "./store/authStore.jsx";
-import HomePage from "./pages/HomePage/HomePage.jsx";
-import React, { useEffect } from "react";
+import { useAuthStore } from "@/app/store/authStore";
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+import { LoadingScreen } from "./components/LoadingScreen/LoadingScreen";
 
 function Home() {
   const { user, loading, checkAuth } = useAuthStore();
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -14,14 +14,14 @@ function Home() {
   useEffect(() => {
     console.log("Current user:", user); // Debug log
   }, [user]);
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <LoadingScreen />;
   console.log("usersdd", user);
 
   if (user) {
     if ("error" in user) {
-      return <SignUp />;
-    } else return <HomePage />;
-  } else return <SignUp />;
+      redirect("/sign-up");
+    } else redirect("/home");
+  } else return redirect("/sign-up");
 }
 
 export default Home;

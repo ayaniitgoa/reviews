@@ -1,108 +1,139 @@
-@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600&family=Inter:wght@300;400;500&display=swap");
 
 .topbar {
-  height: 8vh;
-  width: 100vw;
-  background-color: #db2a2a;
+  height: 70px;
+  width: 100%;
+  background: #0e2148;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2vw;
-  font-family: "Cal Sans", sans-serif;
+  padding: 0 2rem;
+  font-family: "Inter", sans-serif;
   color: white;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   position: relative;
-  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.logoContainer:hover {
+  transform: scale(1.02);
 }
 
 .reviewLogoText {
   font-size: 2rem;
-  font-weight: 400;
-  font-style: normal;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.decorativeDot {
+  font-size: 2.5rem;
+  color: white;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
 }
 
 .rightSideTopBar {
   display: flex;
-  gap: 2vw;
-  font-weight: 100;
+  gap: 1.5rem;
   align-items: center;
 }
 
 .userName {
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
 }
 
 .settingsMenu {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .settingsButton {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   color: white;
-  font-family: "Cal Sans", sans-serif;
-  font-weight: 300;
 }
 
 .settingsButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .dropdownMenu {
   position: absolute;
   right: 0;
-  top: 100%;
+  top: calc(100% + 0.5rem);
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 8px 0;
-  min-width: 180px;
-  z-index: 101;
-  margin-top: 8px;
-  animation: fadeIn 0.15s ease-out;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 1001;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .menuItem {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.75rem;
   width: 100%;
-  padding: 10px 16px;
+  padding: 0.75rem 1.25rem;
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
   color: #333;
-  font-family: "Cal Sans", sans-serif;
-  font-weight: 400;
-  transition: all 0.2s;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .menuItem:hover {
-  background-color: #f5f5f5;
-}
-
-.menuItem span {
-  flex-grow: 1;
+  background: #f8f8f8;
 }
 
 .menuIcon {
   color: #666;
+  transition: color 0.2s ease;
+}
+
+.menuItem:hover .menuIcon {
+  color: #db2a2a;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -110,21 +141,127 @@
   }
 }
 
-/* Responsive adjustments */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .reviewLogoText {
+    font-size: 1.5rem;
+  }
+
+  .decorativeDot {
+    font-size: 1.8rem;
+    bottom: -8px;
+    right: -8px;
+  }
+
+  .rightSideTopBar {
+    gap: 1rem;
+  }
+
+  .dropdownMenu {
+    min-width: 180px;
+  }
+}
+.logoContainer {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.textGradient {
+  background: linear-gradient(45deg, #fff, #ffe6e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.decorativeDot {
+  position: absolute;
+  right: -12px;
+  bottom: -4px;
+  color: #ff4d4d;
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .textGradient {
+    font-size: 1.5rem;
+  }
+
+  .decorativeDot {
+    font-size: 1.8rem;
+    right: -8px;
+    bottom: -2px;
+  }
+}
+/* Add to TopBar.module.css */
+.logoContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.headerWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.reviewLogoText {
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+  position: relative;
+}
+
+.reviewLogoText::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .reviewLogoText {
     font-size: 1.5rem;
   }
 
-  .rightSideTopBar {
-    gap: 3vw;
-  }
-
-  .settingsButton {
-    padding: 4px 8px;
-  }
-
-  .dropdownMenu {
-    min-width: 160px;
+  .headerDot {
+    font-size: 1.8rem;
+    right: -8px;
+    bottom: -6px;
   }
 }

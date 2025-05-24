@@ -1,12 +1,86 @@
-@import url("https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600&display=swap");
 
-.titleHeader {
-  color: #db2a2a;
-  font-size: 4rem;
-  font-family: "Cal Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+.headerContainer {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  padding: 4rem 0 3rem;
+  position: relative;
+}
+
+.titleHeader {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.textGradient {
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #db2a2a, #c22525);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  padding-right: 0.25rem;
+}
+
+.decorativeDot {
+  font-size: 4rem;
+  color: #db2a2a;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Decorative underline */
+.titleHeader::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #db2a2a, transparent);
+  opacity: 0.7;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 3rem 0 2rem;
+  }
+
+  .textGradient {
+    font-size: 2.75rem;
+  }
+
+  .decorativeDot {
+    font-size: 3.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .textGradient {
+    font-size: 2.25rem;
+  }
+
+  .decorativeDot {
+    font-size: 2.75rem;
+  }
+
+  .titleHeader::after {
+    bottom: -0.5rem;
+    width: 40px;
+  }
 }
